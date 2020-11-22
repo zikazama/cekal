@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const mysql = require("mysql");
+require('dotenv').config();
 
 const fs = require("fs");
 const VisualRecognitionV3 = require("ibm-watson/visual-recognition/v3");
@@ -56,9 +57,9 @@ app.get("/user/add", (req, res) => {
 const visualRecognition = new VisualRecognitionV3({
   version: "2018-03-19",
   authenticator: new IamAuthenticator({
-    apikey: "OoON2Y_o8AdF1mcQxvJWNDBAmjzudrdHxGd4E5r4Vxp9",
+    apikey: process.env.VR_API,
   }),
-  url: "https://api.us-south.visual-recognition.watson.cloud.ibm.com/instances/6a2cddb7-ef6d-4b5b-b988-c9f52c6a88fd",
+  url: process.env.VR_URL,
 });
 
 const classifyParams = {
